@@ -232,6 +232,26 @@ h1 {
   letter-spacing: 0.02em;
 }
 .desc { margin: 0; font-size: 0.98rem; line-height: 1.45; max-width: 45ch; }
+.note {
+  margin: 0.15rem 0 0;
+  padding: 0.5rem 0.7rem;
+  font-size: 0.86rem;
+  line-height: 1.4;
+  max-width: 45ch;
+  color: var(--ink);
+  background: rgba(156,90,46,0.1);
+  border-left: 2px solid var(--accent);
+  border-radius: 2px 6px 6px 2px;
+}
+.note strong {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.15rem;
+}
 
 @media (max-width: 800px) {
   .layout { flex-direction: column; }
@@ -317,6 +337,7 @@ h1 {
             <div class="card-body">
               <span class="tag">#06</span>
               <p class="desc">The cabinet edge near the fridge is damaged at the hinge because the fridge door doesn't have enough clearance, the opening is too tight and it keeps catching on the cabinet. This was raised with the cabinet installers.</p>
+              <p class="note"><strong>Note</strong>When you open the door, it touches the wood on the side and makes a sound.</p>
             </div>
           </div>
           </div>
