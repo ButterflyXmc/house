@@ -105,7 +105,9 @@ button { font-family: inherit; }
   transition: background 0.15s ease;
 }
 .tab-btn:hover { background: rgba(156,90,46,0.1); }
-.tab-btn span {
+.tab-icon { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.75; }
+.tab-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tab-count {
   font-variant-numeric: tabular-nums;
   font-size: 0.7rem;
   color: var(--muted);
@@ -115,7 +117,8 @@ button { font-family: inherit; }
   flex-shrink: 0;
 }
 .tab-btn.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; box-shadow: 0 4px 14px -4px rgba(156,90,46,0.55); }
-.tab-btn.active span { background: rgba(255,255,255,0.25); color: var(--accent-ink); }
+.tab-btn.active .tab-icon { opacity: 1; }
+.tab-btn.active .tab-count { background: rgba(255,255,255,0.25); color: var(--accent-ink); }
 
 .content { flex: 1; min-width: 0; padding: 2.75rem 3rem 6rem; max-width: 900px; }
 .panel { display: none; }
@@ -139,6 +142,34 @@ h1 {
   text-wrap: balance;
 }
 .doc-sub { color: var(--muted); font-size: 0.97rem; margin: 0; max-width: 60ch; }
+
+.hero {
+  background: var(--surface-glass-strong);
+  backdrop-filter: blur(var(--blur)) saturate(160%);
+  -webkit-backdrop-filter: blur(var(--blur)) saturate(160%);
+  border: 1px solid var(--line-glass);
+  border-radius: 20px;
+  padding: 2.25rem 2.5rem 2rem;
+  box-shadow: 0 1px 2px var(--shadow), 0 16px 40px -12px var(--shadow), inset 0 1px 0 var(--sheen);
+}
+.hero-grid { display: flex; align-items: center; gap: 2rem; flex-wrap: wrap; }
+.hero-text { flex: 1 1 320px; min-width: 260px; }
+.house-illo { width: clamp(140px, 30vw, 220px); height: auto; flex-shrink: 0; color: var(--accent); margin-left: auto; }
+
+.room-chips { display: flex; flex-wrap: wrap; gap: 0.55rem; margin-top: 1.9rem; }
+.room-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--surface-glass);
+  border: 1px solid var(--line-glass);
+  border-radius: 100px;
+  padding: 0.4rem 0.8rem 0.4rem 0.6rem;
+  font-size: 0.82rem;
+  color: var(--ink);
+}
+.room-chip svg { width: 15px; height: 15px; color: var(--accent); flex-shrink: 0; }
+.room-chip b { font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 600; margin-left: 0.1rem; }
 
 .stats {
   display: flex;
@@ -269,6 +300,8 @@ h1 {
   .tabs { flex-direction: row; }
   .tab-btn { white-space: nowrap; flex: 0 0 auto; }
   .content { padding: 1.75rem 1.25rem 4rem; }
+  .hero { padding: 1.5rem 1.5rem 1.75rem; }
+  .house-illo { display: none; }
   .card { grid-template-columns: 100%; }
   .card img { min-height: 180px; }
   .card-body { padding: 0.9rem 1.1rem 1.1rem; }
@@ -281,17 +314,59 @@ h1 {
       <div class="mark">6302 17st NE</div>
       <div class="sub">Move-in walkthrough</div>
     </div>
-    <nav class="tabs"><button class="tab-btn active" data-target="panel-overview" onclick="showTab('panel-overview')">Overview</button><button class="tab-btn" data-target="panel-kitchen" onclick="showTab('panel-kitchen')">Kitchen<span>6</span></button><button class="tab-btn" data-target="panel-main-floor" onclick="showTab('panel-main-floor')">Main Floor<span>8</span></button><button class="tab-btn" data-target="panel-master-room" onclick="showTab('panel-master-room')">Master Room<span>6</span></button><button class="tab-btn" data-target="panel-second-master-room" onclick="showTab('panel-second-master-room')">Second Master Room<span>6</span></button><button class="tab-btn" data-target="panel-secondary-room" onclick="showTab('panel-secondary-room')">Secondary Room<span>5</span></button><button class="tab-btn" data-target="panel-bonus-room" onclick="showTab('panel-bonus-room')">Bonus Room<span>3</span></button><button class="tab-btn" data-target="panel-basement" onclick="showTab('panel-basement')">Basement<span>7</span></button><button class="tab-btn" data-target="panel-wholehouse" onclick="showTab('panel-wholehouse')">Whole-House<span>2</span></button></nav>
+    <nav class="tabs">
+      <button class="tab-btn active" data-target="panel-overview" onclick="showTab('panel-overview')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3.5" width="14" height="17" rx="2"/><path d="M9 3.5v2h6v-2M9 10h6M9 14h4"/></svg><span class="tab-label">Overview</span></button>
+      <button class="tab-btn" data-target="panel-kitchen" onclick="showTab('panel-kitchen')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.2 2.6-1.6 3.8-1.6 6.4a1.6 1.6 0 1 0 3.2 0c0-.9-.6-1.7-.6-2.5 1.8 1 3 3 3 5.1a4 4 0 1 1-8 0c0-4.3 3-5.4 4-9z"/></svg><span class="tab-label">Kitchen</span><span class="tab-count">6</span></button>
+      <button class="tab-btn" data-target="panel-main-floor" onclick="showTab('panel-main-floor')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="1.2"/><path d="M4 12h16M12 5v14"/></svg><span class="tab-label">Main Floor</span><span class="tab-count">8</span></button>
+      <button class="tab-btn" data-target="panel-master-room" onclick="showTab('panel-master-room')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg><span class="tab-label">Master Room</span><span class="tab-count">6</span></button>
+      <button class="tab-btn" data-target="panel-second-master-room" onclick="showTab('panel-second-master-room')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg><span class="tab-label">Second Master Room</span><span class="tab-count">6</span></button>
+      <button class="tab-btn" data-target="panel-secondary-room" onclick="showTab('panel-secondary-room')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg><span class="tab-label">Secondary Room</span><span class="tab-count">5</span></button>
+      <button class="tab-btn" data-target="panel-bonus-room" onclick="showTab('panel-bonus-room')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1.2"/><circle cx="14.5" cy="12" r="0.9" fill="currentColor" stroke="none"/></svg><span class="tab-label">Bonus Room</span><span class="tab-count">3</span></button>
+      <button class="tab-btn" data-target="panel-basement" onclick="showTab('panel-basement')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h4v-4h4v-4h4v-4h4"/></svg><span class="tab-label">Basement</span><span class="tab-count">7</span></button>
+      <button class="tab-btn" data-target="panel-wholehouse" onclick="showTab('panel-wholehouse')"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9.5h12V10"/></svg><span class="tab-label">Whole-House</span><span class="tab-count">2</span></button>
+    </nav>
   </aside>
   <main class="content">
         <div class="panel active" id="panel-overview">
-          <p class="eyebrow">Documentation</p>
-          <h1>6302 17st NE</h1>
-          <p class="doc-sub">This document lists everything that still needs to be completed in the house, organized by room, with a photo for each item. Use the tabs on the left to move between rooms.</p>
-          <div class="stats">
-            <div class="stat"><div class="n">41</div><div class="l">Total items</div></div>
-            <div class="stat"><div class="n">7</div><div class="l">Rooms</div></div>
-            <div class="stat"><div class="n">2</div><div class="l">Whole-house categories</div></div>
+          <div class="hero">
+            <div class="hero-grid">
+              <div class="hero-text">
+                <p class="eyebrow">Documentation</p>
+                <h1>6302 17st NE</h1>
+                <p class="doc-sub">This document lists everything that still needs to be completed in the house, organized by room, with a photo for each item. Use the tabs on the left to move between rooms.</p>
+                <div class="stats">
+                  <div class="stat"><div class="n">41</div><div class="l">Total items</div></div>
+                  <div class="stat"><div class="n">7</div><div class="l">Rooms</div></div>
+                  <div class="stat"><div class="n">2</div><div class="l">Whole-house categories</div></div>
+                </div>
+              </div>
+              <svg class="house-illo" viewBox="0 0 220 170" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="8" y1="150" x2="212" y2="150" stroke-width="1.4" opacity="0.5"/>
+                <path d="M35 92 L110 38 L185 92" fill="rgba(156,90,46,0.08)"/>
+                <rect x="45" y="92" width="130" height="58" rx="2" fill="rgba(248,241,228,0.5)"/>
+                <rect x="150" y="52" width="12" height="30" fill="rgba(248,241,228,0.5)"/>
+                <path d="M158 46c-4-4 4-6 0-10" stroke-width="1.3" opacity="0.55"/>
+                <rect x="98" y="116" width="24" height="34" rx="2" fill="rgba(156,90,46,0.12)"/>
+                <circle cx="116" cy="133" r="1.6" fill="currentColor" stroke="none"/>
+                <rect x="60" y="104" width="22" height="20" rx="2" fill="rgba(156,90,46,0.06)"/>
+                <path d="M60 114h22M71 104v20" stroke-width="1.3"/>
+                <rect x="138" y="104" width="22" height="20" rx="2" fill="rgba(156,90,46,0.06)"/>
+                <path d="M138 114h22M149 104v20" stroke-width="1.3"/>
+                <circle cx="50" cy="146" r="9" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
+                <circle cx="60" cy="148" r="6.5" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
+                <circle cx="172" cy="147" r="8" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
+              </svg>
+            </div>
+            <div class="room-chips">
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1.2 2.6-1.6 3.8-1.6 6.4a1.6 1.6 0 1 0 3.2 0c0-.9-.6-1.7-.6-2.5 1.8 1 3 3 3 5.1a4 4 0 1 1-8 0c0-4.3 3-5.4 4-9z"/></svg>Kitchen<b>6</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="14" rx="1.2"/><path d="M4 12h16M12 5v14"/></svg>Main Floor<b>8</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>Master Room<b>6</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>Second Master Room<b>6</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17v-6a1.5 1.5 0 0 1 1.5-1.5h15A1.5 1.5 0 0 1 21 11v6"/><path d="M3 17v2.5M21 17v2.5"/><path d="M3.5 11V7a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></svg>Secondary Room<b>5</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="1.2"/><circle cx="14.5" cy="12" r="0.9" fill="currentColor" stroke="none"/></svg>Bonus Room<b>3</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19h4v-4h4v-4h4v-4h4"/></svg>Basement<b>7</b></div>
+              <div class="room-chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11 12 4l8 7"/><path d="M6 10v9.5h12V10"/></svg>Whole-House<b>2</b></div>
+            </div>
           </div>
         </div>
         <div class="panel" id="panel-kitchen">
