@@ -15,17 +15,17 @@
 }
 
 :root {
-  --paper: #EBE1CD;
-  --surface: #F8F1E4;
-  --surface-glass: rgba(248,241,228,0.52);
-  --surface-glass-strong: rgba(248,241,228,0.72);
-  --ink: #362A1E;
-  --muted: #8A7861;
-  --accent: #9C5A2E;
-  --accent-ink: #FBEDE1;
-  --line: #DBCCAC;
-  --line-glass: rgba(219,204,172,0.55);
-  --shadow: rgba(54,42,30,0.08);
+  --paper: #F5F4F0;
+  --surface: #FFFFFF;
+  --surface-glass: rgba(255,255,255,0.52);
+  --surface-glass-strong: rgba(255,255,255,0.72);
+  --ink: #1E2430;
+  --muted: #6B7686;
+  --accent: #3B6EA5;
+  --accent-ink: #F3F8FC;
+  --line: #E2E0D8;
+  --line-glass: rgba(226,224,216,0.55);
+  --shadow: rgba(30,36,48,0.08);
   --sheen: rgba(255,255,255,0.4);
   --blur: 20px;
 }
@@ -47,9 +47,9 @@ body::before {
   position: fixed;
   inset: 0;
   background:
-    radial-gradient(680px circle at 12% 15%, rgba(156,90,46,0.16), transparent 60%),
-    radial-gradient(560px circle at 88% 78%, rgba(156,90,46,0.12), transparent 55%),
-    radial-gradient(420px circle at 60% 8%, rgba(54,42,30,0.06), transparent 55%);
+    radial-gradient(680px circle at 10% 12%, rgba(59,110,165,0.15), transparent 60%),
+    radial-gradient(600px circle at 90% 80%, rgba(196,178,138,0.18), transparent 55%),
+    radial-gradient(420px circle at 55% 55%, rgba(30,36,48,0.035), transparent 60%);
   pointer-events: none;
   z-index: 0;
 }
@@ -104,7 +104,7 @@ button { font-family: inherit; }
   cursor: pointer;
   transition: background 0.15s ease;
 }
-.tab-btn:hover { background: rgba(156,90,46,0.1); }
+.tab-btn:hover { background: rgba(59,110,165,0.1); }
 .tab-icon { width: 17px; height: 17px; flex-shrink: 0; opacity: 0.75; }
 .tab-label { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .tab-count {
@@ -116,7 +116,7 @@ button { font-family: inherit; }
   padding: 0.1rem 0.45rem;
   flex-shrink: 0;
 }
-.tab-btn.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; box-shadow: 0 4px 14px -4px rgba(156,90,46,0.55); }
+.tab-btn.active { background: var(--accent); color: var(--accent-ink); font-weight: 600; box-shadow: 0 4px 14px -4px rgba(59,110,165,0.55); }
 .tab-btn.active .tab-icon { opacity: 1; }
 .tab-btn.active .tab-count { background: rgba(255,255,255,0.25); color: var(--accent-ink); }
 
@@ -270,7 +270,7 @@ h1 {
   line-height: 1.4;
   max-width: 45ch;
   color: var(--ink);
-  background: rgba(156,90,46,0.1);
+  background: rgba(59,110,165,0.1);
   border-left: 2px solid var(--accent);
   border-radius: 2px 6px 6px 2px;
 }
@@ -342,19 +342,19 @@ h1 {
               </div>
               <svg class="house-illo" viewBox="0 0 220 170" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <line x1="8" y1="150" x2="212" y2="150" stroke-width="1.4" opacity="0.5"/>
-                <path d="M35 92 L110 38 L185 92" fill="rgba(156,90,46,0.08)"/>
-                <rect x="45" y="92" width="130" height="58" rx="2" fill="rgba(248,241,228,0.5)"/>
-                <rect x="150" y="52" width="12" height="30" fill="rgba(248,241,228,0.5)"/>
+                <path d="M35 92 L110 38 L185 92" fill="rgba(59,110,165,0.08)"/>
+                <rect x="45" y="92" width="130" height="58" rx="2" fill="rgba(255,255,255,0.5)"/>
+                <rect x="150" y="52" width="12" height="30" fill="rgba(255,255,255,0.5)"/>
                 <path d="M158 46c-4-4 4-6 0-10" stroke-width="1.3" opacity="0.55"/>
-                <rect x="98" y="116" width="24" height="34" rx="2" fill="rgba(156,90,46,0.12)"/>
+                <rect x="98" y="116" width="24" height="34" rx="2" fill="rgba(59,110,165,0.12)"/>
                 <circle cx="116" cy="133" r="1.6" fill="currentColor" stroke="none"/>
-                <rect x="60" y="104" width="22" height="20" rx="2" fill="rgba(156,90,46,0.06)"/>
+                <rect x="60" y="104" width="22" height="20" rx="2" fill="rgba(59,110,165,0.06)"/>
                 <path d="M60 114h22M71 104v20" stroke-width="1.3"/>
-                <rect x="138" y="104" width="22" height="20" rx="2" fill="rgba(156,90,46,0.06)"/>
+                <rect x="138" y="104" width="22" height="20" rx="2" fill="rgba(59,110,165,0.06)"/>
                 <path d="M138 114h22M149 104v20" stroke-width="1.3"/>
-                <circle cx="50" cy="146" r="9" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
-                <circle cx="60" cy="148" r="6.5" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
-                <circle cx="172" cy="147" r="8" fill="rgba(156,90,46,0.1)" stroke-width="1.3"/>
+                <circle cx="50" cy="146" r="9" fill="rgba(196,178,138,0.3)" stroke-width="1.3"/>
+                <circle cx="60" cy="148" r="6.5" fill="rgba(196,178,138,0.3)" stroke-width="1.3"/>
+                <circle cx="172" cy="147" r="8" fill="rgba(196,178,138,0.3)" stroke-width="1.3"/>
               </svg>
             </div>
             <div class="room-chips">
